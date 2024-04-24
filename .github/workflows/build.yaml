@@ -14,7 +14,7 @@ on:
 env:
   REMOTE_REPOSITORY: qosmio/openwrt-ipq
   REMOTE_BRANCH: qualcommax-6.x-nss-wifi
-  CONFIG_FILE: dynalink.config
+  CONFIG_FILE: ${{ inputs.configfile || 'dynalink.config' }}
   NSS_STATUS_PATCH: 999-add-nss-load-to-status.patch
   CUSTOM_FILES_PATH: files/
   RELEASE_PREFIX: Qualcommax-6.x-nss-wifi
@@ -68,7 +68,7 @@ jobs:
           git apply ${{ env.NSS_STATUS_PATCH }}
       - name: Configure firmware image
         run: |
-          configfile=${{ github.event.inputs.configfile }}
+          configfile=${{ env.CONFIG_FILE }}
           echo $configfile
           mv custom_repo/$configfile .config
           make defconfig -j$(nproc)
