@@ -68,7 +68,9 @@ jobs:
           git apply ${{ env.NSS_STATUS_PATCH }}
       - name: Configure firmware image
         run: |
-          mv custom_repo/${{ inputs.configfile }} .config
+          configfile=${{ github.event.inputs.configfile }}
+          echo $configfile
+          mv custom_repo/$configfile .config
           make defconfig -j$(nproc)
       - name: Include custom files
         run: |
