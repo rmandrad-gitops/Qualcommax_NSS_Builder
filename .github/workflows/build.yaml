@@ -7,6 +7,10 @@ on:
         required: true
         type: string
         default: qnap.config
+      kernelversion:
+        required: true
+        type: string
+        default: 6.6.28
   push:
   schedule:
     - cron: '0 0 * * *'
@@ -15,6 +19,7 @@ env:
   REMOTE_REPOSITORY: qosmio/openwrt-ipq
   REMOTE_BRANCH: qualcommax-6.x-nss-wifi
   CONFIG_FILE: ${{ inputs.configfile || 'qnap.config' }}
+  KERNEL_VERSION: ${{ inputs.kernelversion || '6.6.28' }}
   NSS_STATUS_PATCH: 999-add-nss-load-to-status.patch
   CUSTOM_FILES_PATH: files/
   RELEASE_PREFIX: Qualcommax-6.x-nss-wifi
@@ -69,7 +74,9 @@ jobs:
       - name: Configure firmware image
         run: |
           configfile=${{ env.CONFIG_FILE }}
+          kernelversion=${{ env.KERNEL_VERSION }}
           echo $configfile
+          echo $kernelversion
           mv custom_repo/$configfile .config
           make defconfig -j$(nproc)
       - name: Include custom files
