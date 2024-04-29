@@ -20,7 +20,6 @@ env:
   REMOTE_BRANCH: qosmio-wifi-br-6-6
   CONFIG_FILE: ${{ inputs.configfile || 'qnap.config' }}
   KERNEL_VERSION: ${{ inputs.kernelversion || '6.6.28' }}
-  NSS_STATUS_PATCH: 999-add-nss-load-to-status.patch
   CUSTOM_FILES_PATH: files/
   RELEASE_PREFIX: Qualcommax-6.x-nss-wifi
 
