@@ -10,7 +10,7 @@ on:
       kernelversion:
         required: true
         type: string
-        default: 6.6.28
+        default: 6.6.30
   push:
   schedule:
     - cron: '0 0 * * *'
@@ -19,7 +19,7 @@ env:
   REMOTE_REPOSITORY: rmandrad/openwrt
   REMOTE_BRANCH: qosmio-wifi-br-6-6
   CONFIG_FILE: ${{ inputs.configfile || 'qnap.config' }}
-  KERNEL_VERSION: ${{ inputs.kernelversion || '6.6.29' }}
+  KERNEL_VERSION: ${{ inputs.kernelversion || '6.6.30' }}
   CUSTOM_FILES_PATH: files/
   RELEASE_PREFIX: Qualcommax-6.x-nss-wifi
 
