@@ -6,7 +6,7 @@ on:
       configfile:
         required: true
         type: string
-        default: qnap.config
+        default: ax9000.config
       kernelversion:
         required: true
         type: string
@@ -17,8 +17,8 @@ on:
 
 env:
   REMOTE_REPOSITORY: rmandrad/openwrt
-  REMOTE_BRANCH: qosmio-wifi-br-6-6
-  CONFIG_FILE: ${{ inputs.configfile || 'qnap.config' }}
+  REMOTE_BRANCH: qosmio-nss-wifi-6.x
+  CONFIG_FILE: ${{ inputs.configfile || 'ax9000.config' }}
   KERNEL_VERSION: ${{ inputs.kernelversion || '6.6.30' }}
   CUSTOM_FILES_PATH: files/
   RELEASE_PREFIX: Qualcommax-6.x-nss-wifi
