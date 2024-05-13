@@ -78,9 +78,11 @@ jobs:
           mkdir -p ${{ env.CUSTOM_FILES_PATH }}
           mv custom_repo/${{ env.CUSTOM_FILES_PATH }}* ${{ env.CUSTOM_FILES_PATH }}
       - name: Build the firmware image - download
-        run: make download V=s -j$(nproc)
+        run: make download -j$(nproc)
+      - name: Build the firmware image - prepare
+        run: make prepare V=s -j$(nproc)
       - name: Build the firmware image - make
-        run: make world -j$(nproc)
+        run: make V=s -j$(nproc)
       - name: Package output
         run: tar -cvf ipq807xx-images.tar bin/targets/qualcommax/ipq807x
       - name: Upload artifacts
