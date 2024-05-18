@@ -24,6 +24,7 @@ env:
   RELEASE_PREFIX: Qualcommax-6.x-nss-wifi
 
 jobs:
+  runs-on: self-hosted
   check_commits:
     name: Check for new commits
     runs-on: ubuntu-latest
