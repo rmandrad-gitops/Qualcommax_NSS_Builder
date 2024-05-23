@@ -6,7 +6,7 @@ on:
       configfile:
         required: true
         type: string
-        default: ax9000.config
+        default: dynalink.config
       kernelversion:
         required: true
         type: string
@@ -18,7 +18,7 @@ on:
 env:
   REMOTE_REPOSITORY: rmandrad/openwrt
   REMOTE_BRANCH: qosmio-nss-wifi-6.x
-  CONFIG_FILE: ${{ inputs.configfile || 'ax9000.config' }}
+  CONFIG_FILE: ${{ inputs.configfile || 'dynalink.config' }}
   KERNEL_VERSION: ${{ inputs.kernelversion || '6.6.30' }}
   CUSTOM_FILES_PATH: files/
   RELEASE_PREFIX: Qualcommax-6.x-nss-wifi
