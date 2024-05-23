@@ -72,17 +72,17 @@ jobs:
           echo $configfile
           echo $kernelversion
           mv custom_repo/$configfile .config
-          make defconfig -j10
+          make defconfig -j5
       - name: Include custom files
         run: |
           mkdir -p ${{ env.CUSTOM_FILES_PATH }}
           mv custom_repo/${{ env.CUSTOM_FILES_PATH }}* ${{ env.CUSTOM_FILES_PATH }}
       - name: Build the firmware image - download
-        run: make download -j10
+        run: make download -j5
       - name: Build the firmware image - prepare
-        run: make prepare V=s -j10
+        run: make prepare V=s -j5
       - name: Build the firmware image - make
-        run: make V=s -j10
+        run: make V=s -j5
       - name: Package output
         run: tar -cvf ipq807xx-images.tar bin/targets/qualcommax/ipq807x
       - name: Upload artifacts
