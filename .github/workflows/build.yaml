@@ -9,7 +9,7 @@ on:
 env:
   REMOTE_REPOSITORY: rmandrad/openwrt
   REMOTE_BRANCH: qosmio-nss-wifi-6.x
-  CONFIG_FILE: ax9000.config
+  CONFIG_FILE: dynalink.config
   NSS_STATUS_PATCH: 999-add-nss-load-to-status.patch
   CUSTOM_FILES_PATH: files/
   RELEASE_PREFIX: qualcommax-6.x-nss-wifi
@@ -19,7 +19,7 @@ env:
 jobs:
   check_commits:
     name: Check for new commits
-    runs-on: self-hosted
+    runs-on: podman-nuclin-ubuntu
     outputs:
       new_commits: ${{ steps.check_new_commits.outputs.new_commits }}
       latest_commit_sha: ${{ steps.check_new_commits.outputs.latest_commit_sha }}
@@ -45,7 +45,7 @@ jobs:
     name: Build OpenWrt
     needs: check_commits
     if: needs.check_commits.outputs.new_commits == 'true' || needs.check_commits.outputs.nss_packages_repo_new_commits == 'true' || github.event_name == 'workflow_dispatch'
-    runs-on: self-hosted
+    runs-on: podman-nuclin-ubuntu
     steps:
       - name: Install dependencies
         run: |
@@ -99,7 +99,7 @@ jobs:
     name: Create release
     needs: [build, check_commits]
     if: needs.build.result == 'success'
-    runs-on: ubuntu-latest
+    runs-on: podman-nuclin-ubuntu
     permissions:
       contents: write
       issues: write
