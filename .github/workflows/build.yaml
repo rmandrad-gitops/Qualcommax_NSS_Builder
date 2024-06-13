@@ -8,7 +8,7 @@ on:
 
 env:
   REMOTE_REPOSITORY: rmandrad/openwrt
-  REMOTE_BRANCH: qosmio-nss-wifi-6.x
+  REMOTE_BRANCH: qualcommax-6.x-nss-wifi
   CONFIG_FILE: dynalink.config
   NSS_STATUS_PATCH: 999-add-nss-load-to-status.patch
   CUSTOM_FILES_PATH: files/
